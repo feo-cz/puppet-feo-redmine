@@ -48,25 +48,6 @@ class redmine::install {
     path => [ '/bin/', '/sbin/' , '/usr/bin/', '/usr/sbin/', '/usr/local/bin/' ]
   }
 
-  # We need to patch the Gemfile because it assumes Ruby <2.7.0, which does not hold
-  # true even in Ubuntu 18.04, let alone Fedora 32 or anything semi-recent.
-  include ::patch
-
-  $patchfile = '/usr/src/Gemfile-ruby-version.patch'
-
-  file { $patchfile:
-    ensure  => 'present',
-    owner   => 'root',
-    group   => 'root',
-    content => template('redmine/Gemfile-ruby-version.patch.erb'),
-  }
-
-  ::patch::file { 'Gemfile-ruby-version.patch':
-    target      => "${redmine::install_dir}/Gemfile",
-    diff_source => $patchfile,
-    require     => File[$patchfile],
-  }
-
   package { 'bundler':
     ensure   => present,
     provider => gem
@@ -75,7 +56,7 @@ class redmine::install {
   exec { 'bundle_redmine':
     command => "bundle install --gemfile ${redmine::install_dir}/Gemfile --without ${without_gems}",
     creates => "${redmine::install_dir}/Gemfile.lock",
-    require => [ Package['bundler'], Package['make'], Package['gcc'], Package[$packages], ::Patch::File['Gemfile-ruby-version.patch'] ],
+    require => [ Package['bundler'], Package['make'], Package['gcc'], Package[$packages] ],
     notify  => Exec['rails_migrations'],
   }
 
