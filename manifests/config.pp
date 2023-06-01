@@ -54,11 +54,11 @@ class redmine::config {
   } else {
     if $redmine::create_vhost {
       apache::vhost { 'redmine':
-        port            => '80',
+        port            => 80,
         docroot         => "${redmine::webroot}/public",
         servername      => $redmine::vhost_servername,
         serveraliases   => $redmine::vhost_aliases,
-        options         => 'Indexes FollowSymlinks ExecCGI',
+        options         => ['Indexes', 'FollowSymlinks', 'ExecCGI'],
         custom_fragment => "
           RailsBaseURI /
           PassengerPreStart http://${redmine::vhost_servername}
