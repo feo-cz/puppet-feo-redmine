@@ -64,8 +64,12 @@
 # @param create_vhost
 #   Enable or disable vhost creation.
 #   When disabling this option the vhost config is your responsibility.
+# @param bundle
+#   Name of the "bundle" executable to use to set up redmine. The default
+#   value depends on the operating system.
 #
 class redmine (
+  String                   $bundle,
   String                   $version              = undef,
   Stdlib::HTTPUrl          $download_url         = 'https://github.com/redmine/redmine',
   String                   $database_server      = 'localhost',
@@ -90,6 +94,7 @@ class redmine (
   Hash[String, String]     $plugins              = {},
   Optional[String]         $www_subdir           = undef,
   Boolean                  $create_vhost         = true,
+
 ) {
   class { 'redmine::params': }
   -> class { 'redmine::download': }

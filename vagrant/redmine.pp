@@ -10,7 +10,7 @@ class { 'apache::mod::passenger': }
 class { 'postgresql::server': }
 
 class { 'redmine':
-  version           => '4.1.1',
+  version           => '5.0.5',
   database_password => 'vagrant',
   database_adapter  => 'postgresql',
   install_dir       => '/opt/redmine',

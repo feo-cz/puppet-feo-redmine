@@ -10,7 +10,7 @@ class redmine::database_mysql {
   }
 
   -> mysql_user { "${redmine::database_user}@${redmine::database_server}":
-    password_hash => mysql_password($redmine::database_password),
+    password_hash => mysql::password($redmine::database_password),
   }
 
   -> mysql_grant { "${redmine::database_user}@${redmine::database_server}/${redmine::production_database}.*":

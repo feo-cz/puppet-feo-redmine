@@ -1,22 +1,31 @@
 fixtures:
   forge_modules:
-    concat:
+    apache:
       repo: "puppetlabs/apache"
       ref: "9.1.3"
     concat:
       repo: "puppetlabs/concat"
       ref: "8.0.1"
-    concat:
+    epel:
       repo: "puppet/epel"
       ref: "4.1.0"
-    concat:
+    mysql:
+      repo: "puppetlabs/mysql"
+      ref: "14.0.0"
+    postgresql:
       repo: "puppetlabs/postgresql"
       ref: "9.0.3"
-    concat:
+    stdlib:
       repo: "puppetlabs/stdlib"
       ref: "8.6.0"
-    concat:
+    systemd:
+      repo: "puppet/systemd"
+      ref: "5.0.0"
+    vcsrepo:
       repo: "puppetlabs/vcsrepo"
       ref: "6.0.1"
+    yumrepo:
+      repo: "puppetlabs/yumrepo_core"
+      ref: "1.2.0"
   symlinks:
     redmine: "#{source_dir}"
