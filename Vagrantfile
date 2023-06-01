@@ -67,4 +67,27 @@ Vagrant.configure("2") do |config|
     box.vm.provision "shell",
       inline: "/opt/puppetlabs/bin/puppet apply /vagrant/vagrant/redmine.pp --modulepath=/vagrant/modules"
   end
+
+config.vm.define "redmine-jammy" do |box|
+    # box.vbguest.auto_update = false
+    box.vm.box = "ubuntu/jammy64"
+    box.vm.box_version = "20230524.0.0"
+    box.vm.hostname = 'redmine.vagrant.example.lan'
+    box.vm.provider 'virtualbox' do |vb|
+      vb.gui = false
+      vb.memory = 2048
+      vb.customize ["modifyvm", :id, "--ioapic", "on"]
+      vb.customize ["modifyvm", :id, "--hpet", "on"]
+    end
+    box.vm.network "private_network", ip: "192.168.60.13"
+    box.vm.provision "shell", path: "vagrant/common.sh"
+    box.vm.provision "shell", inline: "/usr/bin/apt-get update"
+    box.vm.provision "shell",
+      inline: "/opt/puppetlabs/bin/puppet apply /vagrant/vagrant/hosts.pp --modulepath=/vagrant/modules",
+      env: {  'FACTER_my_host': 'redmine.vagrant.example.lan',
+              'FACTER_my_ip': '192.168.60.13' }
+    box.vm.provision "shell",
+      inline: "/opt/puppetlabs/bin/puppet apply /vagrant/vagrant/redmine.pp --modulepath=/vagrant/modules"
+  end
+
 end
