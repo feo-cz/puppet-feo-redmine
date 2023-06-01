@@ -3,10 +3,10 @@
 
 forge "https://forgeapi.puppetlabs.com"
 
-mod 'puppetlabs-apache', '5.5.0'
-mod 'puppetlabs-concat', '6.2.0'
-mod 'puppet-epel', '3.0.1'
-mod 'puppetlabs-postgresql', '6.7.0'
-mod 'puppetlabs-stdlib', '6.4.0'
-mod 'puppetlabs-vcsrepo', '3.1.1'
+mod 'puppetlabs-apache', '9.1.3'
+mod 'puppetlabs-concat', '8.0.1'
+mod 'puppet-epel', '4.1.0'
+mod 'puppetlabs-postgresql', '9.0.3'
+mod 'puppetlabs-stdlib', '8.6.0'
+mod 'puppetlabs-vcsrepo', '6.0.1'
 
