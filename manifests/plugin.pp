@@ -1,24 +1,19 @@
-#= Type redmine::plugin
-#== Parameters
+# @summary install a Redmine plugin
 #
-#[*ensure*]
-#  Wether the plugin should be installed.
-#  Possible values are installed, latest, and absent.
-#
-#[*source*]
-#  Repository of the plugin. Required
-#
-#[*version*]
+# @param ensure
+#  Whether the plugin should be installed.
+# @param source
+#  Repository of the plugin.
+# @param version
 #  Set to desired version.
-#
-#[*provider*]
+# @param provider
 #  The vcs provider. Default: git
 #
 define redmine::plugin (
-  $ensure   = present,
-  $source   = undef,
-  $version  = undef,
-  $provider = 'git',
+  Enum['installed', 'latest', 'absent'] $ensure   = present,
+  Optional[String]                      $source   = undef,
+  Optional[String]                      $version  = undef,
+  Enum['git','svn']                     $provider = 'git',
 ) {
   $install_dir = "${redmine::install_dir}/plugins/${name}"
   if $ensure == absent {
