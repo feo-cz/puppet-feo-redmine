@@ -81,7 +81,7 @@ config.vm.define "redmine-jammy" do |box|
     end
     box.vm.network "private_network", ip: "192.168.60.13"
     box.vm.provision "shell", path: "vagrant/common.sh"
-    box.vm.provision "shell", inline: "/usr/bin/apt-get update"
+    #box.vm.provision "shell", inline: "/usr/bin/apt-get update"
     box.vm.provision "shell",
       inline: "/opt/puppetlabs/bin/puppet apply /vagrant/vagrant/hosts.pp --modulepath=/vagrant/modules",
       env: {  'FACTER_my_host': 'redmine.vagrant.example.lan',

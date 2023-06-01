@@ -2,38 +2,83 @@
   "name": "johanek-redmine",
   "version": "3.0.1",
   "author": "Johan van den Dorpe",
-  "license": "Apache-2.0",
   "summary": "Module to install redmine",
+  "license": "Apache-2.0",
   "source": "https://github.com/johanek/johanek-redmine",
   "project_page": "https://github.com/johanek/johanek-redmine",
   "issues_url": "https://github.com/johanek/johanek-redmine/issues",
-  "tags": ["redmine", "project management"],
-  "operatingsystem_support": [
+  "dependencies": [
     {
-    "operatingsystem":"RedHat",
-    "operatingsystemmajrelease":[ "8" ]
+      "name": "puppetlabs/apache",
+      "version_requirement": ">= 1.0.0 < 6.0.0"
     },
     {
-    "operatingsystem":"CentOS",
-    "operatingsystemmajrelease":[ "8" ]
+      "name": "puppetlabs/concat",
+      "version_requirement": ">= 1.0.0 < 7.0.0"
     },
     {
-    "operatingsystem":"Scientific",
-    "operatingsystemmajrelease":[ "8" ]
+      "name": "puppet/epel",
+      "version_requirement": ">= 2.0.0 < 4.0.0"
     },
     {
-    "operatingsystem": "Ubuntu",
-    "operatingsystemrelease": [ "18.04", "20.04" ]
+      "name": "puppetlabs/mysql",
+      "version_requirement": ">= 2.0.0 < 11.0.0"
+    },
+    {
+      "name": "tohuwabohu/patch",
+      "version_requirement": ">= 1.0.0 < 2.0.0"
+    },
+    {
+      "name": "puppetlabs/postgresql",
+      "version_requirement": ">= 3.3.0 < 7.0.0"
+    },
+    {
+      "name": "puppetlabs/stdlib",
+      "version_requirement": ">=3.2.0 < 7.0.0"
+    },
+    {
+      "name": "puppetlabs/vcsrepo",
+      "version_requirement": ">= 1.0.0 < 4.0.0"
     }
   ],
-  "dependencies": [
-    { "name": "puppetlabs/apache", "version_requirement": ">= 1.0.0 < 6.0.0" },
-    { "name": "puppetlabs/concat", "version_requirement": ">= 1.0.0 < 7.0.0" },
-    { "name": "puppet/epel", "version_requirement": ">= 2.0.0 < 4.0.0" },
-    { "name": "puppetlabs/mysql", "version_requirement": ">= 2.0.0 < 11.0.0" },
-    { "name": "tohuwabohu/patch", "version_requirement": ">= 1.0.0 < 2.0.0" },
-    { "name": "puppetlabs/postgresql", "version_requirement": ">= 3.3.0 < 7.0.0" },
-    { "name": "puppetlabs/stdlib", "version_requirement": ">=3.2.0 < 7.0.0" },
-    { "name": "puppetlabs/vcsrepo", "version_requirement": ">= 1.0.0 < 4.0.0" }
-  ]
+  "operatingsystem_support": [
+    {
+      "operatingsystem": "RedHat",
+      "operatingsystemmajrelease": [
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "CentOS",
+      "operatingsystemmajrelease": [
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Scientific",
+      "operatingsystemmajrelease": [
+        "8"
+      ]
+    },
+    {
+      "operatingsystem": "Ubuntu",
+      "operatingsystemrelease": [
+        "18.04",
+        "20.04"
+      ]
+    }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">= 6.21.0 < 8.0.0"
+    }
+  ],
+  "tags": [
+    "redmine",
+    "project management"
+  ],
+  "pdk-version": "2.7.1",
+  "template-url": "pdk-default#2.7.4",
+  "template-ref": "tags/2.7.4-0-g58edf57"
 }
