@@ -1,9 +1,8 @@
 # Class redmine::params
 class redmine::params {
-
   if $redmine::database_adapter {
     $real_adapter = $redmine::database_adapter
-  } elsif versioncmp($::rubyversion, '1.9') >= 0 {
+  } elsif versioncmp($facts['ruby']['version'], '1.9') >= 0 {
     $real_adapter = 'mysql2'
   } else {
     $real_adapter = 'mysql'

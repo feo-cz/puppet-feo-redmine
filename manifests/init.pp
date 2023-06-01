@@ -139,7 +139,7 @@ class redmine (
   $development_database = 'redmine_development',
   $database_adapter     = undef,
   $smtp_server          = 'localhost',
-  $smtp_domain          = $::domain,
+  $smtp_domain          = $facts['networking']['domain'],
   $smtp_port            = 25,
   $smtp_authentication  = false,
   $smtp_username        = '',
@@ -155,10 +155,10 @@ class redmine (
   $www_subdir           = undef,
   $create_vhost         = true,
 ) {
-  class { 'redmine::params': } ->
-  class { 'redmine::download': } ->
-  class { 'redmine::config': } ->
-  class { 'redmine::install': } ->
-  class { 'redmine::database': } ->
-  class { 'redmine::rake': }
+  class { 'redmine::params': }
+  -> class { 'redmine::download': }
+  -> class { 'redmine::config': }
+  -> class { 'redmine::install': }
+  -> class { 'redmine::database': }
+  -> class { 'redmine::rake': }
 }

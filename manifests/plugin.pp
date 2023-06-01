@@ -20,7 +20,6 @@ define redmine::plugin (
   $version  = undef,
   $provider = 'git',
 ) {
-
   $install_dir = "${redmine::install_dir}/plugins/${name}"
   if $ensure == absent {
     exec { "rake redmine:plugins:migrate NAME=${name} VERSION=0":
@@ -62,7 +61,7 @@ define redmine::plugin (
     source   => $source,
     provider => $provider,
     notify   => $notify,
-    require  => [ Package[$provider_package]
-                , Exec['bundle_redmine'] ]
+    require  => [Package[$provider_package]
+    , Exec['bundle_redmine']],
   }
 }
