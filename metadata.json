@@ -1,6 +1,6 @@
 {
   "name": "puppetfinland-redmine",
-  "version": "4.0.1",
+  "version": "4.0.2",
   "author": "Puppet-Finland team",
   "summary": "Modernized version of johanek-redmine",
   "license": "Apache-2.0",
