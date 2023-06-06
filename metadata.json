@@ -1,12 +1,12 @@
 {
-  "name": "johanek-redmine",
+  "name": "puppetfinland-redmine",
   "version": "4.0.0",
-  "author": "Johan van den Dorpe",
-  "summary": "Module to install redmine",
+  "author": "Puppet-Finland team",
+  "summary": "Modernized version of johanek-redmine",
   "license": "Apache-2.0",
-  "source": "https://github.com/johanek/johanek-redmine",
-  "project_page": "https://github.com/johanek/johanek-redmine",
-  "issues_url": "https://github.com/johanek/johanek-redmine/issues",
+  "source": "https://github.com/Puppet-Finland/johanek-redmine",
+  "project_page": "https://github.com/Puppet-Finland/johanek-redmine",
+  "issues_url": "https://github.com/Puppet-Finland/johanek-redmine/issues",
   "dependencies": [
     {
       "name": "puppetlabs/apache",
