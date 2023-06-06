@@ -1,6 +1,6 @@
 {
   "name": "johanek-redmine",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "author": "Johan van den Dorpe",
   "summary": "Module to install redmine",
   "license": "Apache-2.0",
