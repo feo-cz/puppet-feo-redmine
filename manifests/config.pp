@@ -1,25 +1,24 @@
 # Class redmine::config
 class redmine::config {
-
   require 'apache'
 
   File {
     owner => $apache::params::user,
     group => $apache::params::group,
-    mode  => '0644'
+    mode  => '0644',
   }
 
   file { $redmine::webroot:
     ensure => link,
-    target => $redmine::install_dir
+    target => $redmine::install_dir,
   }
 
   # user switching makes passenger run redmine as the owner of the startup file
   # which is config.ru or config/environment.rb depending on the Rails version
   file { [
       "${redmine::install_dir}/config.ru",
-      "${redmine::install_dir}/config/environment.rb"]:
-    ensure => 'present',
+    "${redmine::install_dir}/config/environment.rb"]:
+      ensure => 'file',
   }
 
   file { [
@@ -32,18 +31,18 @@ class redmine::config {
       "${redmine::install_dir}/tmp/pdf",
       "${redmine::install_dir}/tmp/sessions",
       "${redmine::install_dir}/public/plugin_assets",
-      "${redmine::install_dir}/log"]:
-    ensure  => 'directory',
+    "${redmine::install_dir}/log"]:
+      ensure  => 'directory',
   }
 
   file { "${redmine::install_dir}/config/database.yml":
-    ensure  => present,
-    content => template('redmine/database.yml.erb')
+    ensure  => file,
+    content => template('redmine/database.yml.erb'),
   }
 
   file { "${redmine::install_dir}/config/configuration.yml":
-    ensure  => present,
-    content => template('redmine/configuration.yml.erb')
+    ensure  => file,
+    content => template('redmine/configuration.yml.erb'),
   }
 
   if $redmine::www_subdir {
@@ -55,11 +54,11 @@ class redmine::config {
   } else {
     if $redmine::create_vhost {
       apache::vhost { 'redmine':
-        port            => '80',
+        port            => 80,
         docroot         => "${redmine::webroot}/public",
         servername      => $redmine::vhost_servername,
         serveraliases   => $redmine::vhost_aliases,
-        options         => 'Indexes FollowSymlinks ExecCGI',
+        options         => ['Indexes', 'FollowSymlinks', 'ExecCGI'],
         custom_fragment => "
           RailsBaseURI /
           PassengerPreStart http://${redmine::vhost_servername}
@@ -70,10 +69,9 @@ class redmine::config {
 
   # Log rotation
   file { '/etc/logrotate.d/redmine':
-    ensure  => present,
+    ensure  => file,
     content => template('redmine/redmine-logrotate.erb'),
     owner   => 'root',
-    group   => 'root'
+    group   => 'root',
   }
-
 }

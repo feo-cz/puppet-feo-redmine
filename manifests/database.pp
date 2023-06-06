@@ -1,6 +1,5 @@
 # Class redmine::database
 class redmine::database {
-
   if $redmine::database_server == 'localhost' {
     if $redmine::params::real_adapter == 'postgresql' {
       class { 'redmine::database_psql': }
@@ -8,5 +7,4 @@ class redmine::database {
       class { 'redmine::database_mysql': }
     }
   }
-
 }

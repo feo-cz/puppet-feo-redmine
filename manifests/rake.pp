@@ -1,6 +1,5 @@
 #Class redmine::rake - DB migrate/prep tasks
 class redmine::rake {
-
   Exec {
     path        => ['/bin','/usr/bin', '/usr/local/bin'],
     environment => ['HOME=/root','RAILS_ENV=production','REDMINE_LANG=en'],
@@ -19,7 +18,7 @@ class redmine::rake {
     command     => 'rake db:migrate',
     notify      => Exec['plugin_migrations'],
     refreshonly => true,
-    require     => Class['::redmine::database'],
+    require     => Class['redmine::database'],
   }
 
   # Perform plugin migrations
@@ -36,5 +35,4 @@ class redmine::rake {
     notify  => Class['apache::service'],
     require => Exec['rails_migrations'],
   }
-
 }
