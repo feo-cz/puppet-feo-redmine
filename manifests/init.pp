@@ -29,6 +29,8 @@
 # @param database_adapter
 #   Database adapter to use for database configuration.
 #   Can be either 'mysql' for ruby 1.8, 'mysql2' for ruby 1.9 or 'postgresql'.
+# @param email_delivery_method
+#   The method Redmine uses to deliver email.
 # @param smtp_server
 #   SMTP server to use.
 # @param smtp_domain
@@ -70,30 +72,31 @@
 #
 class redmine (
   String                   $bundle,
-  String                   $version              = undef,
-  Stdlib::HTTPUrl          $download_url         = 'https://github.com/redmine/redmine',
-  String                   $database_server      = 'localhost',
-  String                   $database_user        = 'redmine',
-  String                   $database_password    = 'redmine',
-  String                   $production_database  = 'redmine',
-  String                   $development_database = 'redmine_development',
+  String                   $version               = undef,
+  Stdlib::HTTPUrl          $download_url          = 'https://github.com/redmine/redmine',
+  String                   $database_server       = 'localhost',
+  String                   $database_user         = 'redmine',
+  String                   $database_password     = 'redmine',
+  String                   $production_database   = 'redmine',
+  String                   $development_database  = 'redmine_development',
   Optional[Enum['mysql','mysql2','postgresql']] $database_adapter = undef,
-  Stdlib::Host             $smtp_server          = 'localhost',
-  String                   $smtp_domain          = $facts['networking']['domain'],
-  Stdlib::Port             $smtp_port            = 25,
-  Boolean                  $smtp_authentication  = false,
-  Optional[String]         $smtp_username        = undef,
-  Optional[String]         $smtp_password        = undef,
-  Boolean                  $smtp_ssl             = false,
-  String                   $vhost_aliases        = 'redmine',
-  String                   $vhost_servername     = 'redmine',
-  Stdlib::Unixpath         $webroot              = "${apache::docroot}/redmine",
-  Stdlib::Unixpath         $install_dir          = '/usr/src/redmine',
-  Enum['wget','git','svn'] $provider             = 'git',
-  Hash[String, String]     $override_options     = {},
-  Hash[String, String]     $plugins              = {},
-  Optional[String]         $www_subdir           = undef,
-  Boolean                  $create_vhost         = true,
+  Enum['sendmail','smtp']  $email_delivery_method = 'smtp',
+  Stdlib::Host             $smtp_server           = 'localhost',
+  String                   $smtp_domain           = $facts['networking']['domain'],
+  Stdlib::Port             $smtp_port             = 25,
+  Boolean                  $smtp_authentication   = false,
+  Optional[String]         $smtp_username         = undef,
+  Optional[String]         $smtp_password         = undef,
+  Boolean                  $smtp_ssl              = false,
+  String                   $vhost_aliases         = 'redmine',
+  String                   $vhost_servername      = 'redmine',
+  Stdlib::Unixpath         $webroot               = "${apache::docroot}/redmine",
+  Stdlib::Unixpath         $install_dir           = '/usr/src/redmine',
+  Enum['wget','git','svn'] $provider              = 'git',
+  Hash[String, String]     $override_options      = {},
+  Hash[String, String]     $plugins               = {},
+  Optional[String]         $www_subdir            = undef,
+  Boolean                  $create_vhost          = true,
 
 ) {
   class { 'redmine::params': }

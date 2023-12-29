@@ -1,4 +1,8 @@
 default:
+<% if scope.lookupvar('redmine::email_delivery_method') == 'sendmail' -%>
+  delivery_method: :sendmail
+<% end -%>
+<% if scope.lookupvar('redmine::email_delivery_method') == 'smtp' -%>
   delivery_method: :smtp
   smtp_settings:
       address: <%= scope.lookupvar('redmine::smtp_server') %>
@@ -14,4 +18,5 @@ default:
 <% end -%>
 <% scope.lookupvar('redmine::override_options').keys.sort.each do |key| -%>
   <%= key %>: <%= scope.lookupvar('redmine::override_options')[key] %>
+<% end -%>
 <% end -%>
