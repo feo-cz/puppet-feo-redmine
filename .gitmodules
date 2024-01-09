@@ -1,0 +1,3 @@
+[submodule "ansible-aws-provision"]
+	path = ansible-aws-provision
+	url = https://github.com/Puppet-Finland/ansible-aws-provision.git

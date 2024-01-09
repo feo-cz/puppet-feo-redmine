@@ -28,3 +28,4 @@
 /spec/fixtures/litmus_inventory.yaml
 /modules
 ubuntu-bionic-18.04-cloudimg-console.log
+/aap-site.yml

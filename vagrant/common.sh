@@ -9,4 +9,4 @@ wget https://raw.githubusercontent.com/Puppet-Finland/scripts/master/bootstrap/l
 /bin/sh install-puppet.sh -n redmine
 
 wget https://raw.githubusercontent.com/Puppet-Finland/scripts/master/bootstrap/linux/install-puppet-modules.sh -q -O install-puppet-modules.sh
-/bin/sh install-puppet-modules.sh -n redmine
+/bin/sh install-puppet-modules.sh -n redmine -r /tmp/redmine -p /tmp/redmine/Puppetfile -m /tmp/redmine/modules

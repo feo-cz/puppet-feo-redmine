@@ -72,6 +72,15 @@ to the plugin resource (via `subscribe => Redmine::Plugin['yourplugin']`)
 Uninstalling plugins can be done by simply setting `ensure => absent`. Again, database migration and
 deletion are done for you.
 
+Developing module code in AWS with Ansible
+------------------------------------------
+
+You can use the provided ansible-aws-provision too to provision disposable
+Redmine instances. See
+[ansible-aws-provision/README.md](ansible-aws-provision/README.md) for usage
+details. A sample AWS config file is provided, see
+[aap-site.yml.sample](aap-site.yml.sample).
+
 Contributing
 ------------
 
