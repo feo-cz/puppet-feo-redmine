@@ -1,16 +1,17 @@
-ami_id: ami-0faab6bdbac9486fb
-instance_name: redmine
-instance_type: t3.medium
-login_user: ubuntu
+redmine:
+  ami_id: ami-0faab6bdbac9486fb
+  instance_name: redmine
+  instance_type: t3.medium
+  login_user: ubuntu
 
-files:
-  "../data": "/tmp/redmine"
-  "../hiera.yaml": "/tmp/redmine"
-  "../manifests": "/tmp/redmine"
-  "../templates": "/tmp/redmine"
-  "../Puppetfile": "/tmp/redmine"
-  "../vagrant": "/tmp/redmine"
+  files:
+    "../data": "/tmp/redmine"
+    "../hiera.yaml": "/tmp/redmine"
+    "../manifests": "/tmp/redmine"
+    "../templates": "/tmp/redmine"
+    "../Puppetfile": "/tmp/redmine"
+    "../vagrant": "/tmp/redmine"
 
-commands:
-  - "/tmp/redmine/vagrant/common.sh"
-  - "/opt/puppetlabs/bin/puppet apply /tmp/redmine/vagrant/redmine.pp --modulepath=/tmp/redmine/modules"
+  commands:
+    - "/tmp/redmine/vagrant/common.sh"
+    - "/opt/puppetlabs/bin/puppet apply /tmp/redmine/vagrant/redmine.pp --modulepath=/tmp/redmine/modules"
