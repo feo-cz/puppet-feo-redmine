@@ -1,8 +1,8 @@
 {
-  "name": "puppetfinland-redmine",
-  "version": "4.1.0",
-  "author": "Puppet-Finland team",
-  "summary": "Modernized version of johanek-redmine",
+  "name": "feo-redmine",
+  "version": "5.0.0",
+  "author": "FEO",
+  "summary": "Modernized version of johanek-redmine | puppetfinland-redmine",
   "license": "Apache-2.0",
   "source": "https://github.com/Puppet-Finland/johanek-redmine",
   "project_page": "https://github.com/Puppet-Finland/johanek-redmine",
@@ -10,35 +10,27 @@
   "dependencies": [
     {
       "name": "puppetlabs/apache",
-      "version_requirement": ">= 9.0.0 < 10.0.0"
+      "version_requirement": ">= 13.0.0 < 14.0.0"
     },
     {
       "name": "puppetlabs/concat",
-      "version_requirement": ">= 8.0.0 < 9.0.0"
-    },
-    {
-      "name": "puppet/epel",
-      "version_requirement": ">= 4.0.0 < 5.0.0"
-    },
-    {
-      "name": "puppetlabs/mysql",
-      "version_requirement": ">= 14.0.0 < 15.0.0"
-    },
-    {
-      "name": "tohuwabohu/patch",
-      "version_requirement": ">= 1.0.0 < 2.0.0"
-    },
-    {
-      "name": "puppetlabs/postgresql",
       "version_requirement": ">= 9.0.0 < 10.0.0"
     },
     {
+      "name": "puppet/epel",
+      "version_requirement": ">= 5.0.0 < 6.0.0"
+    },
+    {
+      "name": "tohuwabohu/patch",
+      "version_requirement": ">= 1.0.0 < 3.0.0"
+    },
+    {
       "name": "puppetlabs/stdlib",
-      "version_requirement": ">=8.0.0 < 9.0.0"
+      "version_requirement": ">= 9.0.0 < 10.0.0"
     },
     {
       "name": "puppetlabs/vcsrepo",
-      "version_requirement": ">= 6.0.0 < 7.0.0"
+      "version_requirement": ">= 7.0.0 < 8.0.0"
     }
   ],
   "operatingsystem_support": [
@@ -64,6 +56,13 @@
       ]
     },
     {
+      "operatingsystem": "Debian",
+      "operatingsystemmajrelease": [
+        "12",
+        "13"
+      ]
+    },
+    {
       "operatingsystem": "Ubuntu",
       "operatingsystemrelease": [
         "22.04"
@@ -73,7 +72,7 @@
   "requirements": [
     {
       "name": "puppet",
-      "version_requirement": ">= 6.21.0 < 8.0.0"
+      "version_requirement": ">= 8.0.0 < 9.0.0"
     }
   ],
   "tags": [

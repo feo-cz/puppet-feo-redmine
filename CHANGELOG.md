@@ -1,3 +1,43 @@
+## 5.0.0 (2025-12-08)
+
+### BREAKING CHANGES
+- **Puppet 8.x required**: Minimum Puppet version is now 8.0.0
+- **Module renamed**: Changed from `puppetfinland-redmine` to `feo-redmine`
+- **Author changed**: Now maintained by FEO
+- **Major dependency upgrades**: All module dependencies upgraded to Puppet 8 compatible versions
+- **Optional dependencies**: MySQL and PostgreSQL are now optional dependencies (install only what you need)
+- **Removed deprecated functions**: Removed `validate_string()` from plugin manifest
+
+### Features
+- Support for Puppet 8.x (>= 8.0.0 < 9.0.0)
+- Added Debian 12 and 13 support
+- MySQL module is now optional (>= 16.0.0 < 17.0.0) - install only if using MySQL
+- PostgreSQL module is now optional (>= 10.0.0 < 11.0.0) - install only if using PostgreSQL
+
+### Dependencies Updated
+**Required dependencies:**
+- puppetlabs/apache: 9.x → 13.x (>= 13.0.0 < 14.0.0)
+- puppetlabs/concat: 8.x → 9.x (>= 9.0.0 < 10.0.0)
+- puppet/epel: 4.x → 5.x (>= 5.0.0 < 6.0.0)
+- puppetlabs/stdlib: 8.x → 9.x (>= 9.0.0 < 10.0.0)
+- puppetlabs/vcsrepo: 6.x → 7.x (>= 7.0.0 < 8.0.0)
+- tohuwabohu/patch: expanded range to >= 1.0.0 < 3.0.0
+
+**Optional dependencies (install based on your database):**
+- puppetlabs/mysql: 14.x → 16.x (>= 16.0.0 < 17.0.0)
+- puppetlabs/postgresql: 9.x → 10.x (>= 10.0.0 < 11.0.0)
+
+### Code Quality
+- Removed deprecated `validate_string()` function from manifests/plugin.pp:38
+- Fixed type declaration: Changed `String $version = undef` to `Optional[String] $version = undef` in manifests/init.pp:75
+- Uses native Puppet type checking instead of stdlib validation functions
+- All manifests use modern `$facts['key']` syntax (no legacy facts)
+- Hiera 5 configuration (already compatible with Puppet 8)
+- All manifests verified for Puppet 8 strict mode compatibility
+
+### Migration Guide
+See UPGRADE.md for detailed upgrade instructions from version 4.1.0 to 5.0.0
+
 ##2.3.0
 WARNING: With the next major version (3.0.0) we will up the default redmine version.
 Check if you can upgrade to 2.6.x or explicitly set your version.

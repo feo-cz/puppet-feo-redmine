@@ -35,7 +35,6 @@ define redmine::plugin (
   if $source == undef {
     fail("no source specified for redmine plugin '${name}'")
   }
-  validate_string($source)
 
   case $provider {
     'svn' : {

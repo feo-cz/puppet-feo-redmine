@@ -72,7 +72,7 @@
 #
 class redmine (
   String                   $bundle,
-  String                   $version               = undef,
+  Optional[String]         $version               = undef,
   Stdlib::HTTPUrl          $download_url          = 'https://github.com/redmine/redmine',
   String                   $database_server       = 'localhost',
   String                   $database_user         = 'redmine',
