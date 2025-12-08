@@ -31,6 +31,7 @@
 ### Code Quality
 - Removed deprecated `validate_string()` function from manifests/plugin.pp:38
 - Fixed type declaration: Changed `String $version = undef` to `Optional[String] $version = undef` in manifests/init.pp:75
+- Fixed `$webroot` default to use static path `/var/www/redmine` instead of `${apache::docroot}/redmine`
 - Uses native Puppet type checking instead of stdlib validation functions
 - All manifests use modern `$facts['key']` syntax (no legacy facts)
 - Hiera 5 configuration (already compatible with Puppet 8)
