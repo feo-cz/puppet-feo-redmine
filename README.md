@@ -1,33 +1,38 @@
-puppetfinland-redmine
----------------------
+feo-redmine
+-----------
+
+**Version 5.0.0** - Compatible with Puppet 8.x
 
 This module installs redmine, running behind apache and passenger, and backed
 by mysql, mariadb or postgresql. Supports both local and remote databases.
 Redmine can be installed using git, svn or wget. Only git is tested in the most
 recent module versions.
 
-The current incarnation of this module is tested on Ubuntu 22.04 and Red Hat 9
-clones (Almalinux) with postgresql backend. Older versions of this module are
-known to work on CentOS 8 as well.
+This module is tested on Ubuntu 22.04, Debian 12/13 and Red Hat 8/9 clones
+(Almalinux, Rocky Linux, CentOS) with postgresql backend.
 
-The code is based on the abandoned
-[johanek-redmine](https://github.com/johanek/johanek-redmine) module.
+The code is based on the abandoned [johanek-redmine](https://github.com/johanek/johanek-redmine)
+module and was previously maintained as `puppetfinland-redmine`. Now maintained by FEO.
 
 Requirements
 ------------
 
-Required modules:
-* puppetlabs-mysql
-* puppetlabs-stdlib
-* puppetlabs-apache
-* puppetlabs-concat
-* puppetlabs-postgresql
+**Puppet 8.x** (>= 8.0.0 < 9.0.0)
 
-Optional modules:
-* puppetlabs-vcsrepo if you want to download redmine from a repository (the default)
+**Required modules:**
+* puppetlabs/apache >= 13.0.0 < 14.0.0
+* puppetlabs/concat >= 9.0.0 < 10.0.0
+* puppetlabs/stdlib >= 9.0.0 < 10.0.0
+* puppetlabs/vcsrepo >= 7.0.0 < 8.0.0
+* puppet/epel >= 5.0.0 < 6.0.0
+* tohuwabohu/patch >= 1.0.0 < 3.0.0
 
-RedHat derivatives:
-* EPEL yum repository needs to be configured
+**Optional modules (install based on your database):**
+* puppetlabs/mysql >= 16.0.0 < 17.0.0 (for MySQL/MariaDB)
+* puppetlabs/postgresql >= 10.0.0 < 11.0.0 (for PostgreSQL)
+
+**RedHat derivatives:**
+* EPEL yum repository needs to be configured (handled by puppet/epel module)
 
 Example Usage
 -------------
