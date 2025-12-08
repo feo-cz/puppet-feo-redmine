@@ -55,6 +55,7 @@ class redmine::config {
     if $redmine::create_vhost {
       apache::vhost { 'redmine':
         port            => $redmine::vhost_port,
+        priority        => $redmine::vhost_priority,
         docroot         => "${redmine::webroot}/public",
         servername      => $redmine::vhost_servername,
         serveraliases   => $redmine::vhost_aliases,

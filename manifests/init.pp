@@ -59,6 +59,10 @@
 #   Server name to use in the vhost config..
 # @param vhost_port
 #   Port for Apache vhost to listen on. Default: 80
+# @param vhost_priority
+#   Apache vhost priority (lower number = loaded first). Use '10' to make Redmine the first
+#   vhost loaded (acting as catch-all/default when Apache default_vhost is disabled).
+#   Default: '25'
 # @param override_options
 #   Extra options to add to configuration.yml.
 # @param plugins
@@ -96,6 +100,7 @@ class redmine (
   String                   $vhost_aliases         = 'redmine',
   String                   $vhost_servername      = 'redmine',
   Stdlib::Port             $vhost_port            = 80,
+  String                   $vhost_priority        = '25',
   Stdlib::Unixpath         $webroot               = '/var/www/redmine',
   Stdlib::Unixpath         $install_dir           = '/usr/src/redmine',
   Enum['wget','git','svn'] $provider              = 'git',

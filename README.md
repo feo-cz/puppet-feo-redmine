@@ -84,8 +84,14 @@ class { 'redmine':
   production_database  => 'redmine_prod',
   development_database => 'redmine_dev',
   install_dir          => '/opt/redmine',
+  vhost_priority       => '10',             # Lower priority = loaded first (optional)
 }
 ```
+
+**Note:** To make Redmine act as the default/catch-all vhost (answering all requests not matched by other vhosts):
+1. Set `vhost_priority => '10'` to load Redmine vhost first
+2. Disable Apache's default vhost with `class { 'apache': default_vhost => false }`
+3. This makes Redmine the first vhost loaded, functioning as the default
 
 Installing Plugins
 ------------------

@@ -12,8 +12,10 @@
 - Support for Puppet 8.x (>= 8.0.0 < 9.0.0)
 - Added Debian 12 and 13 support
 - **New parameter**: `vhost_port` - Configurable Apache vhost port (default: 80)
+- **New parameter**: `vhost_priority` - Apache vhost priority for controlling default vhost (default: '25', use '10' for default)
 - MySQL module is now optional (>= 16.0.0 < 17.0.0) - install only if using MySQL
 - PostgreSQL module is now optional (>= 10.0.0 < 11.0.0) - install only if using PostgreSQL
+- Debian 12/13 compatibility: Uses `default-libmysqlclient-dev` instead of deprecated `libmysqlclient-dev`
 
 ### Dependencies Updated
 **Required dependencies:**
@@ -34,6 +36,7 @@
 - Fixed `$plugins` type from `Hash[String, String]` to `Hash` to support plugin parameters
 - Fixed `$webroot` default to use static path `/var/www/redmine` instead of `${apache::docroot}/redmine`
 - Fixed plugin.pp `$ensure` Enum to use vcsrepo-compatible values: 'present', 'latest', 'absent' (was 'installed', 'latest', 'absent')
+- Improved bundler installation: Use system package `ruby-bundler` on Debian/Ubuntu instead of gem for better integration
 - Uses native Puppet type checking instead of stdlib validation functions
 - All manifests use modern `$facts['key']` syntax (no legacy facts)
 - Hiera 5 configuration (already compatible with Puppet 8)
