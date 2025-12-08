@@ -37,6 +37,8 @@ Requirements
 Example Usage
 -------------
 
+### Local Database
+
 To install redmine that uses local postgresql database:
 
 ```puppet
@@ -54,6 +56,34 @@ class { 'redmine':
   database_password => 'secret',
   database_adapter  => 'postgresql',
   install_dir       => '/opt/redmine',
+}
+```
+
+### External Database
+
+To install redmine with an external MySQL/MariaDB server:
+
+**IMPORTANT:** When using external database (`database_server != 'localhost'`),
+the database and user MUST be created manually before running Puppet.
+The module only manages database when `database_server` is `'localhost'`.
+
+```puppet
+class { 'apache':
+  purge_configs => true,
+  default_vhost => false,
+}
+
+class { 'apache::mod::passenger': }
+
+class { 'redmine':
+  version              => '5.0.5',
+  database_adapter     => 'mysql2',         # Use 'mysql2' for MySQL/MariaDB, 'postgresql' for PostgreSQL
+  database_server      => 'mysql.example.com',
+  database_user        => 'redmine_user',
+  database_password    => 'secret',
+  production_database  => 'redmine_prod',
+  development_database => 'redmine_dev',
+  install_dir          => '/opt/redmine',
 }
 ```
 

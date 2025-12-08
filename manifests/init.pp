@@ -55,6 +55,8 @@
 #   Server aliases to use in the vhost config.
 # @param vhost_servername
 #   Server name to use in the vhost config..
+# @param vhost_port
+#   Port for Apache vhost to listen on. Default: 80
 # @param override_options
 #   Extra options to add to configuration.yml.
 # @param plugins
@@ -90,6 +92,7 @@ class redmine (
   Boolean                  $smtp_ssl              = false,
   String                   $vhost_aliases         = 'redmine',
   String                   $vhost_servername      = 'redmine',
+  Stdlib::Port             $vhost_port            = 80,
   Stdlib::Unixpath         $webroot               = "${apache::docroot}/redmine",
   Stdlib::Unixpath         $install_dir           = '/usr/src/redmine',
   Enum['wget','git','svn'] $provider              = 'git',

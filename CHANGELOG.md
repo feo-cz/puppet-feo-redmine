@@ -11,6 +11,7 @@
 ### Features
 - Support for Puppet 8.x (>= 8.0.0 < 9.0.0)
 - Added Debian 12 and 13 support
+- **New parameter**: `vhost_port` - Configurable Apache vhost port (default: 80)
 - MySQL module is now optional (>= 16.0.0 < 17.0.0) - install only if using MySQL
 - PostgreSQL module is now optional (>= 10.0.0 < 11.0.0) - install only if using PostgreSQL
 
