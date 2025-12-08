@@ -30,7 +30,8 @@
 
 ### Code Quality
 - Removed deprecated `validate_string()` function from manifests/plugin.pp:38
-- Fixed type declaration: Changed `String $version = undef` to `Optional[String] $version = undef` in manifests/init.pp:75
+- Fixed type declaration: Changed `String $version = undef` to `Optional[String] $version = undef` in manifests/init.pp
+- Fixed `$plugins` type from `Hash[String, String]` to `Hash` to support plugin parameters
 - Fixed `$webroot` default to use static path `/var/www/redmine` instead of `${apache::docroot}/redmine`
 - Uses native Puppet type checking instead of stdlib validation functions
 - All manifests use modern `$facts['key']` syntax (no legacy facts)

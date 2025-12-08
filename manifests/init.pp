@@ -62,7 +62,8 @@
 # @param override_options
 #   Extra options to add to configuration.yml.
 # @param plugins
-#   Optional hash of plugins, which are passed to redmine::plugin
+#   Optional hash of plugins, which are passed to redmine::plugin via create_resources.
+#   Example: { 'plugin_name' => { 'source' => 'git://...', 'version' => '1.0' } }
 # @param www_subdir
 #   Optional directory relative to the site webroot to install redmine in.
 #   Undef by default. Expects a path string without leading slash.
@@ -99,7 +100,7 @@ class redmine (
   Stdlib::Unixpath         $install_dir           = '/usr/src/redmine',
   Enum['wget','git','svn'] $provider              = 'git',
   Hash[String, String]     $override_options      = {},
-  Hash[String, String]     $plugins               = {},
+  Hash                     $plugins               = {},
   Optional[String]         $www_subdir            = undef,
   Boolean                  $create_vhost          = true,
 
