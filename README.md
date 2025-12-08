@@ -94,17 +94,18 @@ Plugins can be installed and configured via the redmine::plugin resource. For ex
 plugin can be installed like this:
 
 ```puppet
-    redmine::plugin { 'redmine_plugin'
-      source => 'git://example.com/redmine_plugin.git'
+    redmine::plugin { 'redmine_plugin':
+      source => 'git://example.com/redmine_plugin.git',
+      ensure => 'present',  # or 'latest' or 'absent'
     }
 ```
 Plugins can be installed via git (the default) or any other version control system.
 
 Bundle updates and database migrations will be handled automatically. You can update your plugin by
-setting `ensure => latest` or directly specifying the version. More complex updates can be done by subscribing
+setting `ensure => 'latest'` or directly specifying the version. More complex updates can be done by subscribing
 to the plugin resource (via `subscribe => Redmine::Plugin['yourplugin']`)
 
-Uninstalling plugins can be done by simply setting `ensure => absent`. Again, database migration and
+Uninstalling plugins can be done by simply setting `ensure => 'absent'`. Again, database migration and
 deletion are done for you.
 
 Developing module code in AWS with Ansible

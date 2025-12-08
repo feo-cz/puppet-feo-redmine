@@ -10,10 +10,10 @@
 #  The vcs provider. Default: git
 #
 define redmine::plugin (
-  Enum['installed', 'latest', 'absent'] $ensure   = present,
-  Optional[String]                      $source   = undef,
-  Optional[String]                      $version  = undef,
-  Enum['git','svn']                     $provider = 'git',
+  Enum['present', 'latest', 'absent'] $ensure   = 'present',
+  Optional[String]                    $source   = undef,
+  Optional[String]                    $version  = undef,
+  Enum['git','svn']                   $provider = 'git',
 ) {
   $install_dir = "${redmine::install_dir}/plugins/${name}"
   if $ensure == absent {
