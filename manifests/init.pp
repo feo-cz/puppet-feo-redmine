@@ -75,6 +75,9 @@
 # @param create_vhost
 #   Enable or disable vhost creation.
 #   When disabling this option the vhost config is your responsibility.
+# @param manage_apache
+#   Whether to manage Apache and Passenger installation. If true, the module will
+#   ensure Apache and mod_passenger are installed and configured. Default: true
 # @param bundle
 #   Name of the "bundle" executable to use to set up redmine. The default
 #   value depends on the operating system.
@@ -108,8 +111,18 @@ class redmine (
   Hash                     $plugins               = {},
   Optional[String]         $www_subdir            = undef,
   Boolean                  $create_vhost          = true,
+  Boolean                  $manage_apache         = true,
 
 ) {
+  # Ensure Apache and Passenger if manage_apache is enabled
+  if $manage_apache {
+    ensure_resource('class', 'apache', {
+      'default_vhost' => false,
+      'mpm_module'    => 'prefork',
+    })
+    ensure_resource('class', 'apache::mod::passenger')
+  }
+
   class { 'redmine::params': }
   -> class { 'redmine::download': }
   -> class { 'redmine::config': }
