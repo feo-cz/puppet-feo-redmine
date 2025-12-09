@@ -120,7 +120,12 @@ class redmine (
       'default_vhost' => false,
       'mpm_module'    => 'prefork',
     })
-    ensure_resource('class', 'apache::mod::passenger')
+    ensure_resource('class', 'apache::mod::passenger', {
+      'passenger_high_performance' => 'on',
+      'passenger_max_pool_size'    => 12,
+      'passenger_pool_idle_time'   => 1500,
+      'passenger_stat_throttle_rate' => 120,
+    })
   }
 
   class { 'redmine::params': }
