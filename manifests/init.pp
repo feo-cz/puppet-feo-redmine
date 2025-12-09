@@ -78,6 +78,9 @@
 # @param manage_apache
 #   Whether to manage Apache and Passenger installation. If true, the module will
 #   ensure Apache and mod_passenger are installed and configured. Default: true
+# @param files_dir_link
+#   Optional path to link the files directory to (e.g., shared storage).
+#   If set, creates a symlink instead of a directory. Default: undef (creates directory)
 # @param bundle
 #   Name of the "bundle" executable to use to set up redmine. The default
 #   value depends on the operating system.
@@ -112,6 +115,7 @@ class redmine (
   Optional[String]         $www_subdir            = undef,
   Boolean                  $create_vhost          = true,
   Boolean                  $manage_apache         = true,
+  Optional[Stdlib::Unixpath] $files_dir_link      = undef,
 
 ) {
   # Ensure Apache and Passenger if manage_apache is enabled

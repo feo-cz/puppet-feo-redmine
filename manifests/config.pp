@@ -21,8 +21,19 @@ class redmine::config {
       ensure => 'file',
   }
 
+  if $redmine::files_dir_link {
+    file { "${redmine::install_dir}/files":
+      ensure => link,
+      target => $redmine::files_dir_link,
+      force  => true,
+    }
+  } else {
+    file { "${redmine::install_dir}/files":
+      ensure => 'directory',
+    }
+  }
+
   file { [
-      "${redmine::install_dir}/files",
       "${redmine::install_dir}/tmp",
       "${redmine::install_dir}/tmp/sockets",
       "${redmine::install_dir}/tmp/thumbnails",
