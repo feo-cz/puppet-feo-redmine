@@ -41,7 +41,8 @@
 # @param smtp_port
 #   SMTP port to use.
 # @param smtp_authentication
-#   SMTP authentication mode.
+#   SMTP authentication mode. Supported values: 'plain', 'login', 'cram_md5'.
+#   Set to undef (default) to disable authentication.
 # @param smtp_username
 #   SMTP user name for authentication.
 # @param smtp_password
@@ -99,7 +100,7 @@ class redmine (
   Stdlib::Host             $smtp_server           = 'localhost',
   String                   $smtp_domain           = $facts['networking']['domain'],
   Stdlib::Port             $smtp_port             = 25,
-  Boolean                  $smtp_authentication   = false,
+  Optional[String]         $smtp_authentication   = undef,
   Optional[String]         $smtp_username         = undef,
   Optional[String]         $smtp_password         = undef,
   Boolean                  $smtp_ssl              = false,
