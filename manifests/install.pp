@@ -11,7 +11,7 @@ class redmine::install {
   }
 
   $debian_packages  = ['libmysql++-dev', $mysql_client_dev, 'libmagickcore-dev', 'libmagickwand-dev', 'ruby-dev', 'libpq-dev',
-  'imagemagick']
+  'imagemagick', 'libyaml-dev']
   $redhat_packages  = ['postgresql-devel', 'sqlite-devel', 'ImageMagick-devel', 'ruby-devel', 'mariadb-devel']
 
   case $facts['os']['family'] {
